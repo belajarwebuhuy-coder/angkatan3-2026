@@ -119,27 +119,22 @@
                             </div>
                             <div class="p-3 d-flex flex-column gap-1 small lh-lg">
                                 <a href="#!" class="">
-
                                     <span>Home</span>
                                 </a>
                                 <a href="#!" class="">
-
                                     <span> Inbox</span>
                                 </a>
                                 <a href="#!" class="">
-
                                     <span> Chat</span>
                                 </a>
                                 <a href="#!" class="">
-
                                     <span> Activity</span>
                                 </a>
                                 <a href="#!" class="">
-
                                     <span> Account Settings</span>
                                 </a>
-                                <a href="login.php" class="">
-
+                                <a href="logout.php" class=""
+                                    onclick="return confirm('Apakah anda yakin ingin logout?')">
                                     <span>Logout</span>
                                 </a>
                             </div>

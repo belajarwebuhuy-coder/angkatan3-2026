@@ -1,9 +1,6 @@
-
-
 // Import Bootstrap JS
-import * as bootstrap from 'bootstrap';
-import './custom.js';
-
+import * as bootstrap from "bootstrap";
+import "./custom.js";
 
 // Import SCSS
-import '../scss/style.scss';
+import "../scss/style.scss";
