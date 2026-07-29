@@ -1,14 +1,14 @@
 <?php
     echo "Soal No.1 <br>";
-    $namaSaya = "Steven Clasius Darba";
+    $namaSaya = "Ariel Cuiras Clasius";
     
     echo $namaSaya;
     echo "<hr>";
     
     echo "Soal No.2 <br>";
-    $namaDepan = "Steven";
-    $namaTengah = "Clasius";
-    $namaBelakang = "Darba";
+    $namaDepan = "Ariel";
+    $namaTengah = "Cuiras";
+    $namaBelakang = "Clasius";
     
     echo $namaDepan." ".$namaTengah." ".$namaBelakang;
     echo "<hr>";
@@ -25,19 +25,32 @@
     Hasil Perkalian = $hasil
     </pre>
     ";
-
     echo "<hr>";
-    
     
     echo "Soal No.5 <br>";
     $uangAku = 10000;
     $uangKamu = 5000;
-
+    
     $jumlahUang = $uangAku + $uangKamu;
     echo "
     <pre>
     Uang Aku = $uangAku
     Uang Kamu = $uangKamu
     Uang Kita = $jumlahUang
-    </pre>";
+    </pre>
+    ";
+    
+    echo "Soal No.7 <br>";
+    $nilaiAwal = 75;
+    $nilaiPerbaikan = 80;
+    
+    $simpanNilai = $nilaiAwal;
+    $nilaiAwal = $nilaiPerbaikan;
+    $nilaiPerbaikan = $simpanNilai;
+    
+    echo "<br> Nilai Awal = $nilaiAwal";
+    echo "<hr>";
+    
+
+
 ?>
