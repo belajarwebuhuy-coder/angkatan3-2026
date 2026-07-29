@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (!isset($_SESSION['NAME'])) {
-        header("location:login.php");
+        header("location:index.php");
         exit;
     }
 
@@ -173,7 +173,7 @@
 
 
             <li class="px-4 pt-4 pb-2"><small class="nav-text">Account</small></li>
-            <li><a class="nav-link" href="login.php"><i class="ti ti-logout"></i><span class="nav-text">Log
+            <li><a class="nav-link" href="index.php"><i class="ti ti-logout"></i><span class="nav-text">Log
                         in</span></a>
             </li>
             <li><a class="nav-link" href="signup.php"><i class="ti ti-user-plus"></i><span class="nav-text">Sign
@@ -432,7 +432,7 @@
 
                             <!-- item -->
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-2.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-2.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Wireless Earphones</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -446,7 +446,7 @@
 
                             <!-- repeat -->
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-1.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-1.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Gaming Joy Stick</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -460,7 +460,7 @@
                             </li>
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-3.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-3.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Smart Watch Pro</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -473,7 +473,7 @@
                                 <span class="badge bg-info-subtle text-info border border-info">22%</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-4.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-4.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">USB-C Fast Charger</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -486,7 +486,7 @@
                                 <span class="badge bg-success-subtle text-success border border-success">28%</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-5.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-5.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Portable Bluetooth Speaker</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -516,7 +516,7 @@
                         <ul class="list-group list-group-flush">
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-8.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-8.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Wireless Headphones</p>
                                     <small>ID: #554433</small>
@@ -528,7 +528,7 @@
                             </li>
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-4.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-4.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">USB-C Cable Pack</p>
                                     <small>ID: #887766</small>
@@ -540,7 +540,7 @@
                             </li>
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-10.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-10.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Phone Screen Protector</p>
                                     <small>ID: #332211</small>
@@ -551,7 +551,7 @@
                                 </div>
                             </li>
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-4.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-4.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Portable Charger 20000mAh</p>
                                     <small>ID: #998877</small>
@@ -562,7 +562,7 @@
                                 </div>
                             </li>
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-6.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-6.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Mechanical Keyboard RGB</p>
                                     <small>ID: #665544</small>
@@ -589,7 +589,7 @@
                         <ul class="list-group list-group-flush">
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-7.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-7.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">MacBook Pro 16"</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -603,7 +603,7 @@
                             </li>
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-9.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-9.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">AirPods Pro Max</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -617,7 +617,7 @@
                             </li>
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-8.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-8.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">iPad Air 11"</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -630,7 +630,7 @@
                             </li>
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-3.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-3.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Apple Watch Ultra</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">
@@ -643,7 +643,7 @@
                             </li>
 
                             <li class="list-group-item d-flex align-items-center gap-3">
-                                <img src="./assets/images/product-6.png" class="rounded" width="48">
+                                <img src="src/assets/images/product-6.png" class="rounded" width="48">
                                 <div class="flex-grow-1">
                                     <p class="mb-1">Magic Keyboard</p>
                                     <div class="d-flex align-items-center gap-2 text-muted">

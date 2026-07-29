@@ -161,7 +161,7 @@
 
 
             <li class="px-4 pt-4 pb-2"><small class="nav-text">Account</small></li>
-            <li><a class="nav-link" href="login.php"><i class="ti ti-logout"></i><span class="nav-text">Log
+            <li><a class="nav-link" href="index.php"><i class="ti ti-logout"></i><span class="nav-text">Log
                         in</span></a>
             </li>
             <li><a class="nav-link" href="signup.php"><i class="ti ti-user-plus"></i><span class="nav-text">Sign

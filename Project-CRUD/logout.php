@@ -3,5 +3,5 @@ session_start();
 session_destroy();
 $_SESSION = [];
 
-header("location:login.php");
+header("location:index.php");
 exit();

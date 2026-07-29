@@ -67,7 +67,7 @@
                 </form>
 
                 <div class="text-center mt-3 small text-muted">
-                    Already have an account? <a href="login.php" class="link-primary">Sign in</a>
+                    Already have an account? <a href="index.php" class="link-primary">Sign in</a>
                 </div>
             </div>
         </div>
