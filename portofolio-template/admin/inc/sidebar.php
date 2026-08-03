@@ -49,6 +49,12 @@
                             <p class="text-light">Resume</p>
                         </a>
                     </li>
+                    <li class="nav-item <?= ($currentPage == 'skill.php') ? 'active' : '' ?>">
+                        <a href="skill.php" aria-expanded="false">
+                            <i class="fas fa-file text-light"></i>
+                            <p class="text-light">Skill</p>
+                        </a>
+                    </li>
                     <li class="nav-item <?= ($currentPage == 'contact.php') ? 'active' : '' ?>">
                         <a href="contact.php" aria-expanded="false">
                             <i class="fas  fa-address-book text-light"></i>

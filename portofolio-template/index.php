@@ -2,12 +2,21 @@
 	include 'admin/config/koneksi.php';
 
 	//Slider
-	$q_slider = mysqli_query($conn, "SELECT * FROM sliders WHERE is_active = 1 ORDER BY id DESC LIMIT 2");
+	$q_slider = mysqli_query($conn, "SELECT * FROM sliders WHERE is_active = 1 ORDER BY id DESC");
 	$sliders = mysqli_fetch_all($q_slider, MYSQLI_ASSOC);
 	
 	//Setting / About Us
 	$q_setting = mysqli_query($conn, "SELECT * FROM settings ");
 	$about = mysqli_fetch_assoc($q_setting); 
+    
+	//Resume
+	$q_resume = mysqli_query($conn, "SELECT * FROM resume ORDER BY id DESC");
+	$resume = mysqli_fetch_all($q_resume, MYSQLI_ASSOC); 
+    
+    //progress
+	$q_progress = mysqli_query($conn, "SELECT * FROM skills ORDER BY id DESC");
+	$progress = mysqli_fetch_all($q_progress, MYSQLI_ASSOC); 
+
 	
 
 ?>
@@ -43,7 +52,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.php">Wahyu</a>
+            <a class="navbar-brand" href="index.php">Portofolio</a>
             <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
                 data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
@@ -88,10 +97,12 @@
 										echo implode(" ", $title) ?>
                                     </span></h1>
                                 <h2 class="mb-4"><?= $v['subtitle'] ?></h2>
-                                <h3 class="mb-4"><?= $v['description'] ?></h3>
+                                <h3 class="mb-4 w-75"><?= $v['description'] ?></h3>
                                 <p><a href="<?= $v['button1_link'] ?>"
-                                        class="btn btn-primary py-3 px-4"><?= $v['button1_text']?></a> <a href="#"
-                                        class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+                                        class="btn btn-primary py-3 px-4"><?= $v['button1_text']?></a> <a
+                                        href="<?= $v['button2_link']?>"
+                                        class="btn btn-white btn-outline-white py-3 px-4"><?= $v['button2_text']?></a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -181,60 +192,23 @@
                 </div>
             </div>
             <div class="row">
+                <?php foreach ($resume  as $index => $v) {
+				// $title = explode(" ", $v['title']);
+			    ?>
                 <div class="col-md-6">
                     <div class="resume-wrap ftco-animate">
-                        <span class="date">2014-2015</span>
-                        <h2>Master Degree of Design</h2>
-                        <span class="position">Cambridge University</span>
-                        <p class="mt-4">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                            into your mouth.</p>
-                    </div>
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2014-2015</span>
-                        <h2>Bachelor's Degree of C.A</h2>
-                        <span class="position">Cambridge University</span>
-                        <p class="mt-4">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                            into your mouth.</p>
-                    </div>
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2014-2015</span>
-                        <h2>Diploma in Computer</h2>
-                        <span class="position">Cambridge University</span>
-                        <p class="mt-4">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                            into your mouth.</p>
+                        <span class="date"><?php echo $v['year_start'] . " - " . $v['year_end']?></span>
+                        <h2><?php echo $v['title']?></h2>
+                        <span class="position"><?php echo $v['subtitle']?></span>
+                        <p class="mt-4"><?php echo $v['description']?></p>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2014-2015</span>
-                        <h2>Art &amp; Creative Director</h2>
-                        <span class="position">Cambridge University</span>
-                        <p class="mt-4">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                            into your mouth.</p>
-                    </div>
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2014-2015</span>
-                        <h2>Wordpress Developer</h2>
-                        <span class="position">Cambridge University</span>
-                        <p class="mt-4">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                            into your mouth.</p>
-                    </div>
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2017-2018</span>
-                        <h2>UI/UX Designer</h2>
-                        <span class="position">Cambridge University</span>
-                        <p class="mt-4">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly
-                            into your mouth.</p>
-                    </div>
-                </div>
+                <?php
+                }
+            ?>
             </div>
+
+
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6 text-center ftco-animate">
                     <p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
@@ -329,72 +303,25 @@
                 </div>
             </div>
             <div class="row">
+                <?php
+                foreach ($progress as $index => $v){
+                ?>
                 <div class="col-md-6 animate-box">
                     <div class="progress-wrap ftco-animate">
-                        <h3>Photoshop</h3>
+                        <h3 class="<?= $v['progress'] <= 10 ? 'mb-5':''?>">
+                            <?= $v['name'] ?>
+                        </h3>
                         <div class="progress">
-                            <div class="progress-bar color-1" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                                aria-valuemax="100" style="width:90%">
-                                <span>90%</span>
+                            <div class="progress-bar color-1" role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                aria-valuemax="100" style="width:<?= $v['progress']; ?>%">
+                                <span><?= $v['progress'].'%'?></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>jQuery</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-2" role="progressbar" aria-valuenow="85" aria-valuemin="0"
-                                aria-valuemax="100" style="width:85%">
-                                <span>85%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>HTML5</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-3" role="progressbar" aria-valuenow="95" aria-valuemin="0"
-                                aria-valuemax="100" style="width:95%">
-                                <span>95%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>CSS3</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-4" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                                aria-valuemax="100" style="width:90%">
-                                <span>90%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>WordPress</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-5" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                                aria-valuemax="100" style="width:70%">
-                                <span>70%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>SEO</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-6" role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                                aria-valuemax="100" style="width:80%">
-                                <span>80%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </section>

@@ -7,61 +7,30 @@
     $id = isset($_GET['edit']) ? $_GET['edit'] : '';
     
     // tampilkan semuda data dari table user urutan dari terbesar ke terkecil
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE id='$id'");
+    $query = mysqli_query($conn, "SELECT * FROM skills WHERE id='$id'");
     $row = mysqli_fetch_assoc($query);
     
     //Tambah User
     if (isset($_POST['save'])) {
         $name = $_POST['name'];
-        $email = $_POST['email'];
-        $password = $_POST['password'] ? $_POST['password'] : $row['password'];
-
-        $checkEmail = mysqli_query($conn, "SELECT email FROM users WHERE email = '$email'");
-        $showEmail = mysqli_fetch_assoc($checkEmail);
-
-        if ($id) {
-        // Edit -> abaikan email milik sendiri
-        $checkEmail = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND id != '$id'");
-        } else {
-            // Tambah
-            $checkEmail = mysqli_query($conn, "SELECT id FROM users WHERE email='$email'");
-        }
-        
-        if (mysqli_num_rows($checkEmail) > 0) {
-        header("Location: create-user.php" . ($id ? "?edit=$id&email=gagal" : "?email=gagal"));
-        exit;
-    }
+        $progress = $_POST['progress'];
         
         if ($id) {
             //update data
-            //kalau password diisi
-            if (!empty($password)) {
-            $pass = sha1($password);
-
-            mysqli_query($conn, "UPDATE users SET
-                name='$name',
-                email='$email',
-                password='$pass'
-                WHERE id='$id'");
-            } else {
-                // Password kosong -> jangan diubah
-                mysqli_query($conn, "UPDATE users SET
-                    name='$name',
-                    email='$email'
-                    WHERE id='$id'");
-            }
-    
-            header("location: user.php?update=berhasil");
-            exit;
+            $update = mysqli_query($conn, "UPDATE skills SET 
+            name = '$name',
+            progress = '$progress' WHERE id='$id'");
+            header('location:skill.php?update=berhasil');
+        } else {
+            //masukan ke dalam skill sebutkan kolom di table user nilainya di ambil dari user nginput
+            $insert = mysqli_query($conn, "INSERT INTO skills 
+            (name,progress) 
+            VALUES ('$name','$progress')"); 
+            header("location:skill.php?tambah=berhasil");
         }
-            $pass = sha1($password);
-            //masukan ke dalam users sebutkan kolom di table user nilainya di ambil dari user nginput
-            $insert = mysqli_query($conn, "INSERT INTO users (name, email, password) VALUES ('$name','$email','$pass')"); 
-            header("location:user.php?tambah=berhasil");
-            exit;
-        
     };
-      
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +38,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Create User</title>
+    <name>Create User</name>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <?php
         include "inc/css.php";
@@ -119,52 +88,38 @@
                 <div class="page-inner">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                         <div>
-                            <h3 class="fw-bold mb-3"><?php echo isset($_GET['edit'])? 'Edit User' : 'Create User' ?>
+                            <h3 class="fw-bold mb-3"><?php echo isset($_GET['edit'])? 'Edit Skill' : 'Create Skill' ?>
                             </h3>
                         </div>
                         <div class="ms-md-auto py-2 py-md-0">
                             <!-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a> -->
-                            <a href="user.php" class="btn btn-primary btn-round">Back</a>
+                            <a href="skill.php" class="btn btn-primary btn-round">Back</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <?php if (isset($_GET['email']) && $_GET['email'] == 'gagal'){
-                                        
-                                        ?>
-                                    <div class="alert alert-danger" role="alert">
-                                        Email Telah Digunakan
-                                    </div>
-                                    <?php
-                                        }
-                                        ?>
-
-
-                                    <form action="" method="post">
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        <!-- name  -->
                                         <div class="mb-3">
-                                            <label for="" class="form-label">Name</label>
+                                            <label for="" class="form-label fw-bold">Name</label>
                                             <input type="text" class="form-control" name="name" placeholder="Enter Name"
                                                 required value="<?php echo ($id) ? $row['name'] : ''?>">
                                         </div>
+
+                                        <!-- progress -->
                                         <div class="mb-3">
-                                            <label for="" class="form-label">Email</label>
-                                            <input type="text" class="form-control" name="email"
-                                                placeholder="Enter Email" required
-                                                value="<?php echo ($id) ? $row['email'] : ''?>">
+                                            <label for="" class="form-label fw-bold">Progress <span
+                                                    id="progressValue"></span></label>
+                                            <input type="range" class="form-range" name="progress"
+                                                placeholder="Enter Progress" required id="progress"
+                                                value="<?php echo ($id) ? $row['progress'] : ''?>">
                                         </div>
+
                                         <div class="mb-3">
-                                            <label for="" class="form-label fw-bold">
-                                                <?php echo ($id) ? 'Password   <small class="text-secondary">(leave blank if you do nott wish to change it)</small>' : 'Password'
-                                                ?>
-                                            </label>
-                                            <input type="password" class="form-control" name="password"
-                                                placeholder="Enter Password" <?php echo ($id) ? '' : 'required'
-                                                ?>>
-                                        </div>
-                                        <div class="mb-3">
-                                            <button class="btn btn-primary" name="save" type="submit">Save</button>
+                                            <button class="btn btn-primary w-100" name="save"
+                                                type="submit">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -205,6 +160,35 @@
     </div>
 
     <?php include "inc/js.php"; ?>
+
+    <script>
+    // const progress = document.getElementById("progress");
+    // const progressValue = document.getElementById("progressValue");
+
+    // progressValue.textContent = progress.value + "%";
+
+    // progress.addEventListener("input", function() {
+    //     progressValue.textContent = thus.value;
+    // });
+
+    const slider = document.getElementById("progress");
+    const bubble = document.getElementById("progressValue");
+
+    function updateBubble() {
+        const value = slider.value;
+        const min = slider.min ? slider.min : 0;
+        const max = slider.max ? slider.max : 100;
+
+        const percent = (value - min);
+
+        bubble.innerHTML = value + "%";
+        // bubble.style.right = `calc(${percent}% + (${8 - percent * 0.15}px))`;
+    }
+
+    slider.addEventListener("input", updateBubble);
+
+    updateBubble();
+    </script>
 </body>
 
 </html>
