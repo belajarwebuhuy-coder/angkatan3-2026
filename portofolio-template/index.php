@@ -309,7 +309,7 @@
                 <div class="col-md-6 animate-box">
                     <div class="progress-wrap ftco-animate">
                         <h3 class="<?= $v['progress'] <= 10 ? 'mb-5':''?>">
-                            <?= $v['name'] ?>
+                            <?= htmlspecialchars($v['name']) ?>
                         </h3>
                         <div class="progress">
                             <div class="progress-bar color-1" role="progressbar" aria-valuenow="10" aria-valuemin="0"
