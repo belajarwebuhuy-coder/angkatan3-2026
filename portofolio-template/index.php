@@ -17,9 +17,32 @@
 	$q_progress = mysqli_query($conn, "SELECT * FROM skills ORDER BY id DESC");
 	$progress = mysqli_fetch_all($q_progress, MYSQLI_ASSOC); 
 
-	
-
+    //contact
+    
+    $id = isset($_GET['edit']) ? $_GET['edit'] : '';
+    
+    // tampilkan semuda data dari table user urutan dari terbesar ke terkecil
+    $query = mysqli_query($conn, "SELECT * FROM contacts WHERE id='$id'");
+    $row = mysqli_fetch_assoc($query);
+    
+    //Tambah contact
+    if (isset($_POST['save'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+        
+        //masukan ke dalam skill sebutkan kolom di table contacts nilainya di ambil dari user nginput
+        $insert = mysqli_query($conn, "INSERT INTO contacts 
+        (name, email, subject, message) 
+        VALUES ('$name','$email','$subject','$message')"); 
+        header('location:index.php');
+        exit();
+    };
+    
+    
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +71,6 @@
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
         <div class="container">
@@ -579,25 +601,24 @@
 
             <div class="row no-gutters block-9">
                 <div class="col-md-6 order-md-last d-flex">
-                    <form action="#" class="bg-light p-4 p-md-5 contact-form">
+                    <form action="" method="post" class="bg-light p-4 p-md-5 contact-form">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name">
+                            <input type="text" class="form-control" placeholder="Your Name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Email">
+                            <input type="text" class="form-control" placeholder="Your Email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject">
+                            <input type="text" class="form-control" placeholder="Subject" name="subject" required>
                         </div>
                         <div class="form-group">
-                            <textarea name="" id="" cols="30" rows="7" class="form-control"
-                                placeholder="Message"></textarea>
+                            <textarea id="" cols="30" rows="7" class="form-control" name="message" placeholder="Message"
+                                required></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                            <button class="btn btn-primary w-100" name="save" type="submit">Send Message</button>
                         </div>
                     </form>
-
                 </div>
 
                 <div class="col-md-6 d-flex">

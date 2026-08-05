@@ -26,43 +26,43 @@
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
                     <li class="nav-item <?= ($currentPage == 'dashboard.php') ? 'active' : '' ?> ">
-                        <a href="dashboard.php" aria-expanded="false">
+                        <a href="app.php?page=dashboard" aria-expanded="false">
                             <i class="fas fa-home text-light"></i>
                             <p class="text-light">Dashboard</p>
                         </a>
                     </li>
                     <li class="nav-item <?= ($currentPage == 'user.php') ? 'active' : '' ?>">
-                        <a href="user.php" aria-expanded="false">
+                        <a href="app.php?page=user" aria-expanded="false">
                             <i class="fas fa-users text-light"></i>
                             <p class="text-light">User</p>
                         </a>
                     </li>
                     <li class="nav-item <?= ($currentPage == 'slider.php') ? 'active' : '' ?>">
-                        <a href="./slider.php" aria-expanded="false">
+                        <a href="app.php?page=slider" aria-expanded="false">
                             <i class="fas fa-address-card text-light"></i>
                             <p class="text-light">Slider</p>
                         </a>
                     </li>
                     <li class="nav-item <?= ($currentPage == 'resume.php') ? 'active' : '' ?>">
-                        <a href="resume.php" aria-expanded="false">
+                        <a href="app.php?page=resume" aria-expanded="false">
                             <i class="fas fa-file text-light"></i>
                             <p class="text-light">Resume</p>
                         </a>
                     </li>
                     <li class="nav-item <?= ($currentPage == 'skill.php') ? 'active' : '' ?>">
-                        <a href="skill.php" aria-expanded="false">
+                        <a href="app.php?page=skill" aria-expanded="false">
                             <i class="fas fa-file text-light"></i>
                             <p class="text-light">Skill</p>
                         </a>
                     </li>
                     <li class="nav-item <?= ($currentPage == 'contact.php') ? 'active' : '' ?>">
-                        <a href="contact.php" aria-expanded="false">
+                        <a href="app.php?page=contact" aria-expanded="false">
                             <i class="fas  fa-address-book text-light"></i>
                             <p class="text-light">Contact</p>
                         </a>
                     </li>
                     <li class="nav-item <?= ($currentPage == 'settings.php') ? 'active' : '' ?>">
-                        <a href="settings.php" aria-expanded="false">
+                        <a href="app.php?page=settings" aria-expanded="false">
                             <i class="fas fa-wrench text-light"></i>
                             <p class="text-light">Setings</p>
                         </a>
