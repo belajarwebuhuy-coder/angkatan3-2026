@@ -1,7 +1,13 @@
 <?php
     session_start();
-    
     // echo $_SESSION['NAME'];
+    
+    include 'config/koneksi.php';
+
+    $queryTotalUser = mysqli_query($conn, "SELECT COUNT(*) AS total FROM users");
+    $totalUser = mysqli_fetch_assoc($queryTotalUser);
+    $queryTotalSlider = mysqli_query($conn, "SELECT COUNT(*) AS total FROM sliders");
+    $totalSlider = mysqli_fetch_assoc($queryTotalSlider);
 ?>
 
 <!DOCTYPE html>
@@ -68,9 +74,36 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-md-12">
-
+                        <div class="col-sm-6 col-md-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="mb-3 fw-bold text-end text-info">Total User</h2>
+                                    <h3 class="fw-bold mb-0 text-end">
+                                        <?php echo $totalUser['total']; ?></h3>
+                                    <!-- <p class="text-primary mb-0 small">+5% since last month</p> -->
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-sm-6 col-md-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="mb-3 fw-bold text-end text-info">Total Slider</h2>
+                                    <h3 class="fw-bold mb-0 text-end">
+                                        <?php echo $totalSlider['total']; ?></h3>
+                                    <!-- <p class="text-primary mb-0 small">+5% since last month</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-6 col-md-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="mb-3 fw-bold text-end">Total User</h2>
+                                    <h3 class="fw-bold mb-0 text-end">
+                                        <?php echo $totalUser['total']; ?></h3>
+                                    <p class="text-primary mb-0 small">+5% since last month</p>
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

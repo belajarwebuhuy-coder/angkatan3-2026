@@ -114,11 +114,11 @@
                                                 <td><?php echo $row['description'] ?></td>
                                                 <td>
                                                     <a class="btn btn-success btn-sm"
-                                                        href="create-slider.php?edit=<?php echo $row['id']?>">Edit
+                                                        href="create-resume.php?edit=<?php echo $row['id']?>">Edit
                                                     </a>
                                                     <a onclick="return confirm('Are you sure wanna delete this data?')"
                                                         class="btn btn-danger btn-sm"
-                                                        href="slider.php?delete=<?php echo $row['id']?>">Delete
+                                                        href="resume.php?delete=<?php echo $row['id']?>">Delete
                                                     </a>
                                                 </td>
                                             </tr>

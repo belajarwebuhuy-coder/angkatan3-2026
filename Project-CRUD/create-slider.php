@@ -18,11 +18,26 @@
         $btn1_link = $_POST['button1_link'];
         $btn2_text = $_POST['button2_text'];
         $btn2_link = $_POST['button2_link'];
-        $image = $_FILES['image']['name'];
+        $image = uniqid(). '_' . $_FILES['image']['name'];
         $description = $_POST['description'];
-        
-        $tmp = $_FILES['image']['tmp_name'];
-        move_uploaded_file($tmp, "uploads/" . $image);
+        $isActive = $_POST['is_active'];
+
+        /* $_FILES['image'] = [
+            'name' => 'logo.png',
+            'type' => 'image/png',
+            'tmp_name' => 'C:\xampp\tmp\php123.tmp',
+            'error' => 0,
+            'size' => 125000
+        ]; */
+        if ($_FILES['image']['name'] != ''){
+            if (!empty($row['image']) && file_exists("uploads/" . $row['image'])) {
+                unlink("uploads/" . $row['image']);
+            }
+            $tmp = $_FILES['image']['tmp_name'];
+            move_uploaded_file($tmp, "uploads/" . $image);
+        } else {
+            $image = $row['image'];
+        };
 
         if ($id) {
             //update data
@@ -34,13 +49,14 @@
             button2_text = '$btn2_text',
             button2_link = '$btn2_link',
             image = '$image',
-            description = '$description' WHERE id='$id'");
+            description = '$description',
+            is_active = '$isActive' WHERE id='$id'");
             header('location:slider.php?update=berhasil');
         } else {
             //masukan ke dalam users sebutkan kolom di table user nilainya di ambil dari user nginput
             $insert = mysqli_query($conn, "INSERT INTO sliders 
-            (title, subtitle, button1_text, button1_link, button2_text, button2_link, image, description) 
-            VALUES ('$title','$subtitle','$btn1_text','$btn1_link','$btn2_text','$btn2_link','$image','$description')"); 
+            (title, subtitle, button1_text, button1_link, button2_text, button2_link, image, description, is_active) 
+            VALUES ('$title','$subtitle','$btn1_text','$btn1_link','$btn2_text','$btn2_link','$image','$description', '$isActive')"); 
             header("location:slider.php?tambah=berhasil");
         }
     };
@@ -120,7 +136,7 @@
                                             <label for="" class="form-label fw-bold">Title</label>
                                             <input type="text" class="form-control" name="title"
                                                 placeholder="Enter Title" required
-                                                value="<?php echo ($id) ? $row['name'] : ''?>">
+                                                value="<?php echo ($id) ? $row['title'] : ''?>">
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label fw-bold">Subtitle</label>
@@ -169,7 +185,26 @@
                                         <div class="mb-3">
                                             <label for="" class="form-label fw-bold">Description</label>
                                             <textarea name="description" id="" class="form-control"
-                                                placeholder="Enter Description"></textarea>
+                                                placeholder="Enter Description"
+                                                value=""><?php echo ($id) ? $row['description'] : ''?></textarea>
+                                        </div>
+
+                                        <!-- is Active -->
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="is_active"
+                                                id="radioDefault1" value="1"
+                                                <?= ($id && $row['is_active'] == 1) ? "checked" : '' ?>>
+                                            <label class="form-check-label" for="radioDefault1">
+                                                Active
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="is_active"
+                                                id="radioDefault2" value="0"
+                                                <?= ($id && $row['is_active'] == 0) ? "checked" : '' ?>>
+                                            <label class="form-check-label" for="radioDefault2">
+                                                Deactive
+                                            </label>
                                         </div>
 
                                         <div class="mb-3">

@@ -37,6 +37,30 @@
                             <p class="text-light">User</p>
                         </a>
                     </li>
+                    <li class="nav-item <?= ($currentPage == 'slider.php') ? 'active' : '' ?>">
+                        <a href="slider.php" aria-expanded="false">
+                            <i class="fas fa-address-card text-light"></i>
+                            <p class="text-light">Slider</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= ($currentPage == 'resume.php') ? 'active' : '' ?>">
+                        <a href="resume.php" aria-expanded="false">
+                            <i class="fas fa-file text-light"></i>
+                            <p class="text-light">Resume</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= ($currentPage == 'contact.php') ? 'active' : '' ?>">
+                        <a href="contact.php" aria-expanded="false">
+                            <i class="fas  fa-address-book text-light"></i>
+                            <p class="text-light">Contact</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= ($currentPage == 'settings.php') ? 'active' : '' ?>">
+                        <a href="settings.php" aria-expanded="false">
+                            <i class="fas fa-wrench text-light"></i>
+                            <p class="text-light">Setings</p>
+                        </a>
+                    </li>
                     <!-- <li class="nav-section">
                         <span class="sidebar-mini-icon">
                             <i class="fa fa-ellipsis-h"></i>

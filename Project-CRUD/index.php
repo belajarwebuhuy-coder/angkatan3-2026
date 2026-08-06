@@ -4,7 +4,7 @@
     
     if(isset($_POST["login"])){
         $email = $_POST["email"];
-        $pass = $_POST["password"];
+        $pass = sha1($_POST["password"]);
         
         $login = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
         $row = mysqli_fetch_assoc($login);

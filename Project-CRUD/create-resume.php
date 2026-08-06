@@ -116,7 +116,7 @@
                                         </div>
 
                                         <!-- Year -->
-                                        <div class="mb-3">
+                                        <!-- <div class="mb-3">
                                             <label for="" class="form-label fw-bold">Year Start</label>
                                             <input type="number" class="form-control" name="year_start"
                                                 placeholder="Enter Year Start" required
@@ -127,7 +127,7 @@
                                             <input type="number" class="form-control" name="year_end"
                                                 placeholder="Enter Year End" required
                                                 value="<?php echo ($id) ? $row['year_end'] : ''?>">
-                                        </div>
+                                        </div> -->
 
                                         <!-- subtitle -->
                                         <div class="mb-3">
@@ -142,6 +142,15 @@
                                             <textarea name="description" id="" class="form-control"
                                                 placeholder="Enter Description"
                                                 value=""><?php echo ($id) ? $row['description'] : ''?></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="" class="form-label fw-bold">Year Start</label>
+                                            <select name="" id="year_start" class="form-select"></select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label fw-bold">Year End</label>
+                                            <select name="" id="year_end" class="form-select"></select>
                                         </div>
 
                                         <div class="mb-3">
@@ -187,6 +196,30 @@
     </div>
 
     <?php include "inc/js.php"; ?>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        //Year Start
+        const yearStart = document.getElementById("year_start");
+        const yearEnd = document.getElementById("year_end");
+        const yearOld = 2003;
+        const currentYear = new Date().getFullYear();
+
+        for (let year = currentYear; year >= yearOld; year--) {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            yearStart.appendChild(option);
+        }
+
+        for (let year = currentYear; year >= yearOld; year--) {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            yearEnd.appendChild(option);
+        }
+    });
+    </script>
 </body>
 
 </html>

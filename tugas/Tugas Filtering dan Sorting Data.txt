@@ -1,0 +1,14 @@
+Muhamad Azis Setiawan
+
+
+1. Sintaks Tampilkan semua produk dengan harga di atas 50.000
+SELECT * FROM `product` WHERE price >= 50000
+
+2. Sintaks Tampilkan produk yang memiliki kategori "Elektronik" atau "Perabot".
+SELECT * FROM `product` WHERE category IN ('elektronik','perabot')
+
+3. Sintaks Urutkan data produk berdasarkan price secara descending.
+SELECT * FROM `product` ORDER BY price DESC
+
+4.Sintaks Tampilkan 3 produk termurah.
+SELECT * FROM `product` ORDER BY price ASC LIMIT 3

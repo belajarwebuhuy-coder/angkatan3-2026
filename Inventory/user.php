@@ -1,11 +1,22 @@
 <?php
     session_start();
+    $currentPage = basename($_SERVER['PHP_SELF']);
+
+    include 'config/connect.php';
+
     if (!isset($_SESSION['NAME'])) {
         header("location:index.php");
         exit;
     }
 
+    $query = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
+    $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,8 +167,8 @@
         </div>
         <ul class="nav flex-column">
             <li class="px-4 py-2"><small class="nav-text">Main</small></li>
-            <li><a class="nav-link" href="dashboard.php"><i class="ti ti-home"></i><span
-                        class="nav-text">Dashboard</span></a></li>
+            <li><a class="nav-link <?= $currentPage == 'dashboard.php' ? 'active' : '' ?>" href="dashboard.php"><i
+                        class="ti ti-home"></i><span class="nav-text ">Dashboard</span></a></li>
             <li><a class="nav-link" href="user.php"><i class="ti ti-box-seam"></i><span class="nav-text">User</span></a>
             </li>
             <!-- <li><a class="nav-link" href="create-product.php"><i class="ti ti-plus"></i><span class="nav-text">Add
@@ -185,35 +196,63 @@
     <!-- MAIN CONTENT -->
     <main id="content" class="content py-10">
         <div class="container-fluid">
-            <div class="row ">
-                <div class="col-12">
-                    <div class="mb-6">
-                        <h1 class="fs-3 mb-1">User</h1>
-                        <p>Your main content goes here…</p>
-                    </div>
-                </div>
-            </div>
-
-
             <div class="row">
                 <div class="col-12">
-                    <footer class="text-center py-2 mt-6 text-secondary ">
-                        <p class="mb-0">Copyright © 2026 InApp Inventory Dashboard. Developed by <a
-                                href="https://codescandy.com/" target="_blank" class="text-primary">CodesCandy</a> •
-                            Distributed by <a href="https://themewagon.com/" target="_blank"
-                                class="text-primary">ThemeWagon</a> </p>
-                    </footer>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-6">
+                                <h1 class="fs-3 mb-1">User</h1>
+                                <!-- <p>Your main content goes here…</p> -->
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <div class="mb-6">
+                                <a class="btn btn-primary btn-round text-end" href="create-user.php">Create New User</a>
+                                <!-- <p>Your main content goes here…</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="fw-bold">No</th>
+                                <th class="fw-bold">Name</th>
+                                <th class="fw-bold">Email</th>
+                                <th class="fw-bold">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($rows as $index => $row): ?>
+                            <tr>
+                                <th><?php echo $index += 1 ?></th>
+                                <th><?php echo $row['name'] ?></th>
+                                <th><?php echo $row['email']?></th>
+                                <th>
+                                    <a class="btn btn-success w-25"
+                                        href="create-user.php?edit=<?php echo $row['id']?>">Edit</a>
+                                    <a class="btn btn-danger w-25"
+                                        href="user.php?delete=<?php echo $row['id']?>">Delete</a>
+                                </th>
+                            </tr>
+                            <?php endforeach?>
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
-
+        </div>
         </div>
     </main>
 
+
+    <!-- <footer class="text-center py-2 mt-6 text-secondary bg-info">
+        <p class="mb-0">Copyright © 2026 InApp Inventory Dashboard. Developed by <a href="https://codescandy.com/"
+                target="_blank" class="text-primary">CodesCandy</a> •
+            Distributed by <a href="https://themewagon.com/" target="_blank" class="text-primary">ThemeWagon</a>
+        </p>
+    </footer> -->
+
     <!-- Bootstrap JS -->
     <script src="src/assets/js/main.js"></script>
-
-
 
 </body>
 

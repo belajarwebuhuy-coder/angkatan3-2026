@@ -5,15 +5,22 @@
     include 'config/koneksi.php';
     
     //tampilkan semuda data dari table user urutan dari terbesar ke terkecil
-
     $query = mysqli_query($conn, "SELECT * FROM sliders ORDER BY id DESC");
     $rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
-
+    
     //jika params delete ada
     if (isset($_GET['delete'])) {
-        $delete = $_GET['delete'];
-        $delete = mysqli_query($conn, "DELETE FROM users WHERE id='$delete'");
-        header('location:user.php?hapus=berhasil');
+        $id = (int) $_GET['delete'];
+
+        $query = mysqli_query($conn, "SELECT * FROM sliders WHERE id='$id'");
+        $row = mysqli_fetch_assoc($query);
+
+        if (!empty($row['image']) && file_exists("uploads/" . $row['image'])) {
+            unlink("uploads/" . $row['image']);
+        }
+
+        mysqli_query($conn, "DELETE FROM sliders WHERE id='$id'");
+        header('location:slider.php?hapus=berhasil');
     }
     
 ?>
@@ -97,6 +104,7 @@
                                                 <th>Button 1 Link</th>
                                                 <th>Image</th>
                                                 <th>Description</th>
+                                                <th>Active</th>
                                                 <th>Action</th>
                                             </tr>
                                         <tbody>
@@ -112,12 +120,14 @@
                                                 <td><img src="uploads/<?= $row['image']; ?>" width="100" height="80"
                                                         alt="Image"></td>
                                                 <td><?php echo $row['description'] ?></td>
+                                                <td><?php echo $row['is_active'] == 1 ? 'Active' :'Deactive' ?></td>
                                                 <td>
-                                                    <a class="btn btn-success btn-sm" href="detail.php">Detail
+                                                    <a class="btn btn-success btn-sm"
+                                                        href="create-slider.php?edit=<?php echo $row['id']?>">Edit
                                                     </a>
                                                     <a onclick="return confirm('Are you sure wanna delete this data?')"
                                                         class="btn btn-danger btn-sm"
-                                                        href="contact.php?delete=<?php echo $row['id']?>">Delete
+                                                        href="slider.php?delete=<?php echo $row['id']?>">Delete
                                                     </a>
                                                 </td>
                                             </tr>
